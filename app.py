@@ -79,7 +79,9 @@ vi_en = {
 
 
 }
+
 pattern = re.compile(r'\b(' + '|'.join(en_vi.keys()) + r')\b')
+
 # end of dictionary
 
 @app.route('/webhook', methods=['POST'])
@@ -101,7 +103,7 @@ def webhook():
 def processRequest(req):
     if req.get("result").get("action") != "yahooWeatherForecast":
         return {}
-    baseurl = "https://query.yahooapis.com/v1/public/yql?&u=c"
+    baseurl = "https://query.yahooapis.com/v1/public/yql?&u=c&"
     yql_query = makeYqlQuery(req)
     if yql_query is None:
         return {}
