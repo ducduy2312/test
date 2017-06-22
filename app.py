@@ -85,8 +85,8 @@ pattern = re.compile('|'.join(en_vi.keys()))
 def webhook():
     req = request.get_json(silent=True, force=True)
 
-    print("Request:")
-    print(json.dumps(req, indent=4))
+    #print("Request:")
+    #print(json.dumps(req, indent=4))
 
     res = processRequest(req)
 
@@ -107,6 +107,8 @@ def processRequest(req):
     yql_url = baseurl + urlencode({'q': yql_query}) + "&u=c&format=json"
     result = urlopen(yql_url).read()
     data = json.loads(result)
+    print('data received: ')
+    print(data)
     res = makeWebhookResult(data)
     return res
 
