@@ -79,6 +79,7 @@ vi-en = {
 
 
 }
+pattern = re.compile('|'.join(en-vi.keys()))
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
@@ -143,8 +144,7 @@ def makeWebhookResult(data):
     if condition is None:
         return {}
 
-	pattern = re.compile('|'.join(en-vi.keys()))
-	
+	    
     # print(json.dumps(item, indent=4))
 
     speech = "Hôm nay ở " + location.get('city') + ": " + pattern.sub(lambda x: d[x.group()], condition.get('code')) + \
