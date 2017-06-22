@@ -150,8 +150,8 @@ def makeWebhookResult(data):
     print('check condition')
 	    
     # print(json.dumps(item, indent=4))
-
-    speech = "Hôm nay ở " + location.get('city') + ": " + pattern.sub(lambda x: d[x.group()], condition.get('code')) + \
+    #pattern.sub(lambda x: d[x.group()], condition.get('code')) +
+    speech = "Hôm nay ở " + location.get('city') + ": " +  \
              ", nhiệt độ trung bình là " + condition.get('temp') + " độ" 
 
     print("Response:")
