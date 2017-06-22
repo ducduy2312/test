@@ -107,8 +107,6 @@ def processRequest(req):
     yql_url = baseurl + urlencode({'q': yql_query}) + "&u=c&format=json"
     result = urlopen(yql_url).read()
     data = json.loads(result)
-    print('data received: ')
-    print(data)
     res = makeWebhookResult(data)
     return res
 
@@ -127,25 +125,29 @@ def makeWebhookResult(data):
     query = data.get('query')
     if query is None:
         return {}
-
+    print('check query')
+	
     result = query.get('results')
     if result is None:
         return {}
-
+    print('check result')
+	
     channel = result.get('channel')
     if channel is None:
         return {}
-
+    print('check channel')
+	
     item = channel.get('item')
     location = channel.get('location')
     units = channel.get('units')
     if (location is None) or (item is None) or (units is None):
         return {}
-
+    print('check loc or item or unit')
+	
     condition = item.get('condition')
     if condition is None:
         return {}
-
+    print('check condition')
 	    
     # print(json.dumps(item, indent=4))
 
