@@ -79,7 +79,7 @@ vi_en = {
 
 
 }
-pattern = re.compile('|'.join(en-vi.keys()))
+pattern = re.compile('|'.join(envi.keys()))
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
