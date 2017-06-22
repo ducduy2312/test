@@ -125,33 +125,35 @@ def makeWebhookResult(data):
     query = data.get('query')
     if query is None:
         return {}
-    print('check query')
+    
 	
     result = query.get('results')
     if result is None:
         return {}
-    print('check result')
+    
 	
     channel = result.get('channel')
     if channel is None:
         return {}
-    print('check channel')
+    
 	
     item = channel.get('item')
     location = channel.get('location')
     units = channel.get('units')
     if (location is None) or (item is None) or (units is None):
         return {}
-    print('check loc or item or unit')
+    
 	
     condition = item.get('condition')
     if condition is None:
         return {}
-    print('check condition')
+    
 	    
     # print(json.dumps(item, indent=4))
-    #pattern.sub(lambda x: d[x.group()], condition.get('code')) +
-    speech = "Hôm nay ở " + location.get('city') + ": " +  \
+    code = condition.get('code')
+    text_weather = pattern.sub(lambda x: d[x.group()], code) 
+    print(text_weather)
+    speech = "Hôm nay ở " + location.get('city') + ": " +  text_weather +\
              ", nhiệt độ trung bình là " + condition.get('temp') + " độ" 
 
     print("Response:")
