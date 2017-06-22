@@ -152,7 +152,7 @@ def makeWebhookResult(data):
     # print(json.dumps(item, indent=4))
     code = condition.get('code')
     print('code la :' + code)
-    text_weather = pattern.sub(lambda x: d[x.group()], code) 
+    text_weather = pattern.sub(lambda x: en_vi[x.group()], code) 
     
     print(text_weather)
     speech = "Hôm nay ở " + location.get('city') + ": " +  text_weather +\
