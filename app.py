@@ -20,7 +20,7 @@ from flask import make_response
 app = Flask(__name__)
 
 #dictionary for translation
-en-vi = {
+en_vi = {
 '0':'vòi rồng',
 '1':'bão nhiệt đới',
 '2':'bão lớn',
@@ -75,7 +75,7 @@ en-vi = {
 'Ho Chi Minh':'Hồ Chí Minh',
 }
 
-vi-en = {
+vi_en = {
 
 
 }
