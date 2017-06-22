@@ -79,7 +79,8 @@ vi_en = {
 
 
 }
-pattern = re.compile('|'.join(en_vi.keys()))
+pattern = re.compile(r'\b(' + '|'.join(en_vi.keys()) + r')\b')
+# end of dictionary
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
@@ -100,11 +101,11 @@ def webhook():
 def processRequest(req):
     if req.get("result").get("action") != "yahooWeatherForecast":
         return {}
-    baseurl = "https://query.yahooapis.com/v1/public/yql?"
+    baseurl = "https://query.yahooapis.com/v1/public/yql?&u=c"
     yql_query = makeYqlQuery(req)
     if yql_query is None:
         return {}
-    yql_url = baseurl + urlencode({'q': yql_query}) + "&u=c&format=json"
+    yql_url = baseurl + urlencode({'q': yql_query}) + "&format=json"
     result = urlopen(yql_url).read()
     data = json.loads(result)
     res = makeWebhookResult(data)
@@ -152,7 +153,7 @@ def makeWebhookResult(data):
     # print(json.dumps(item, indent=4))
     code = condition.get('code')
     print('code la :' + code)
-    text_weather = pattern.sub(lambda x: en_vi[x.group()], code) 
+    text_weather = pattern.sub(lambda x: en_vi[x.group()], code)  
     
     print(text_weather)
     speech = "Hôm nay ở " + location.get('city') + ": " +  text_weather +\
